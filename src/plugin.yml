@@ -2,3 +2,5 @@ name: TrackBoosters
 main: me.phoenixcantfly.phoenixtrackboosters.Main
 version: 0.0.1
 description: brrr go go go
+authors: [Phoenix]
+api-version: 1.16
