@@ -26,7 +26,7 @@ public class Main extends JavaPlugin implements Listener {
             player.setVelocity(new Vector(0, 0.4+1.2, 0));
         } else if (blockStanding.getType().equals(Material.SMOOTH_QUARTZ)){
             player.setVelocity(playerLocation.getDirection().multiply(0.75).setY(1.2));
-        } else if (blockStanding.getType().equals(Material.GOLD_BLOCK)){
+        } else if (blockStanding.getType().equals(Material.RED_GLAZED_TERRACOTTA)){
             player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (int)(1.0*20), 4, true, false));
         } else {
             //break out
