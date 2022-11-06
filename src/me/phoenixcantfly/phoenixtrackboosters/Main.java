@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 public class Main extends JavaPlugin implements Listener {
     @EventHandler
@@ -20,18 +21,21 @@ public class Main extends JavaPlugin implements Listener {
         Player player = e.getPlayer();
         Location playerLocation = player.getLocation();
         Block blockStanding = playerLocation.getBlock().getRelative(BlockFace.DOWN);
-        if(blockStanding.getType().equals(Material.EMERALD_BLOCK)){
-            player.setVelocity(e.getPlayer().getLocation().getDirection().multiply(1.3).setY(1));
+        if(blockStanding.getType().equals(Material.EMERALD_BLOCK)) {
+            //player.setVelocity(e.getPlayer().getLocation().getDirection().multiply(1.00).setY(1.75));
+            player.setVelocity(new Vector(0, 0.4+1.2, 0));
+        } else if (blockStanding.getType().equals(Material.SMOOTH_QUARTZ)){
+            player.setVelocity(playerLocation.getDirection().multiply(0.75).setY(1.2));
         } else if (blockStanding.getType().equals(Material.GOLD_BLOCK)){
-            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5*20, 4, true, false));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (int)(1.0*20), 4, true, false));
         } else {
             //break out
             return;
         }
         //sfx will play for both conditions
-        e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.ITEM_TRIDENT_RIPTIDE_1, 0.7F, 0.75F);
-        e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.ENTITY_WITHER_SHOOT, 0.4F, 0.55F);
-        e.getPlayer().getLocation().getWorld().spawnParticle(Particle.CLOUD, e.getPlayer().getLocation(), 50, 0.2F, 1, 0.2F, 0.01F);
+        player.playSound(playerLocation, Sound.ITEM_TRIDENT_RIPTIDE_1, 0.7F, 0.75F);
+        player.playSound(playerLocation, Sound.ENTITY_WITHER_SHOOT, 0.4F, 0.55F);
+        playerLocation.getWorld().spawnParticle(Particle.CLOUD, playerLocation, 50, 0.2F, 1, 0.2F, 0.01F);
     }
 
     @Override
